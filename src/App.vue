@@ -1,10 +1,29 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+<!--  <div id="app">-->
+<!--    <div id="nav">-->
+<!--&lt;!&ndash;      <router-link to="/">Home</router-link> |&ndash;&gt;-->
+<!--&lt;!&ndash;      <router-link to="/about">About</router-link>|&ndash;&gt;-->
+<!--      <router-link to="/Money">MONEY</router-link> |-->
+<!--      <router-link to="/Lable">LABLE</router-link>|-->
+<!--      <router-link to="/Statistics">STATISTICS</router-link> |-->
+<!--      <router-link to="/rrr111">test</router-link>|-->
+<!--      <router-link to="/home">home</router-link>|-->
+
+<!--    </div>-->
+<!--    <router-view/>-->
+<!--  </div>-->
+  <div>app
+  <hr>
     <router-view/>
+    <hr>
+    <div>
+            <router-link to="/Money">MONEY</router-link> |
+            <router-link to="/Lable">LABLE</router-link>|
+            <router-link to="/Statistics">STATISTICS</router-link> |
+            <router-link to="/rrr111">test</router-link>|
+            <router-link to="/home">home</router-link>|
+    </div>
+
   </div>
 </template>
 
