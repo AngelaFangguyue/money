@@ -1,10 +1,15 @@
 <template>
-  <div>LABLE</div>
+  <div>LABLE
+    <Nav/>
+  </div>
+
 </template>
 
 <script lang="ts">
+  import Nav from '@/components/Nav.vue';
   export default {
-    name: 'Lable'
+    name: 'Lable',
+    components: {Nav}
   };
 </script>
 

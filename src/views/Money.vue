@@ -1,10 +1,15 @@
 <template>
-  <div>MONEY</div>
+  <div>MONEY
+    <Nav/>
+  </div>
+
 </template>
 
 <script lang="ts">
+  import Nav from '@/components/Nav.vue';
   export default {
-    name: 'Money'
+    name: 'Money',
+    components: {Nav}
   };
 </script>
 

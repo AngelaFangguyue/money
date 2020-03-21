@@ -12,22 +12,23 @@
 <!--    </div>-->
 <!--    <router-view/>-->
 <!--  </div>-->
-  <div>app
-  <hr>
+<div><!--  app-->
+<!--  <hr>-->
     <router-view/>
-    <hr>
-    <div>
-            <router-link to="/Money">MONEY</router-link> |
-            <router-link to="/Lable">LABLE</router-link>|
-            <router-link to="/Statistics">STATISTICS</router-link> |
-            <router-link to="/rrr111">test</router-link>|
-            <router-link to="/home">home</router-link>|
-    </div>
+
 
   </div>
 </template>
 
 <style lang="scss">
+  *{
+    margin:0;
+    padding:0;
+  }
+  a{
+    text-decoration: none;
+    color:inherit;
+  }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

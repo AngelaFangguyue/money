@@ -4,16 +4,16 @@ import Home from '../views/Home.vue';
 import Money from '@/views/Money.vue';
 import Statistics from '@/views/Statistics.vue';
 import Nofound from '@/views/Nofound.vue';
-import rrr from '@/views/rrr.vue';
+
 
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/rrr111',
+    path:'/',
     // name: 'Home',
-    component: rrr
+    redirect:'/Money'//这是重定向，默认进入这个页面
   },
   {
     path: '/Money',
@@ -31,16 +31,15 @@ const routes = [
     component: Statistics
   },
   {
-    path: '/home',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/*',
+    path: '*',
     // name: 'Home',
     component: Nofound
   },
-
+  // {
+  //   path: '/home',
+  //   name: 'Home',
+  //   component: Home
+  // },
   // {
   //   path: '/about',
   //   name: 'About',
