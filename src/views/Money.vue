@@ -1,18 +1,17 @@
 <template>
-  <div class="nav-wrapper">
-    <div class="content">
-      <p>money</p>
-    </div>
-    <Nav/>
-  </div>
+ <Layout>
+   <svg>
+     <use xlink:href="#money"/>
+   </svg>
+   <p>Money</p>
+ </Layout>
 
 </template>
 
 <script lang="ts">
-  import Nav from '@/components/Nav.vue';
   export default {
     name: 'Money',
-    components: {Nav}
+
   };
 </script>
 
