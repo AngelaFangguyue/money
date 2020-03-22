@@ -1,10 +1,10 @@
 <template>
   <nav>
-    <router-link to="/Money" class="item">
+    <router-link to="/Money" class="item" active-class="selected">
       <Icon iconName="#money"/>记账</router-link>
-    <router-link to="/Lable" class="item">
+    <router-link to="/Lable" class="item" active-class="selected">
       <Icon iconName="#label"/>标签</router-link>
-    <router-link to="/Statistics" class="item">
+    <router-link to="/Statistics" class="item" active-class="selected">
       <Icon iconName="#tongji"/>统计</router-link>
   </nav>
 </template>
@@ -56,6 +56,9 @@ nav{
     /*&.selected{*/
     /*  color:red;*/
     /*}*/
+  }
+  > .item.selected {
+    color:red;
   }
 }
 </style>
