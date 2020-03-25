@@ -1,6 +1,6 @@
 <template>
-  <div class="nav-wrapper">
-    <div class="content">
+  <div class="layout-wrapper" :class="`${classPerfix}-wrapper`">
+    <div class="content" :class="`${classPerfix}-content`">
       <slot></slot>
 <!--      <svg>-->
 <!--        <use xlink:href="#money"/>-->
@@ -12,12 +12,13 @@
 
 <script lang="ts">
   export default {
-    name: 'Layout'
+    name: 'Layout',
+    props:["classPerfix"]
   };
 </script>
 
 <style lang="scss" scoped>
-  .nav-wrapper{
+  .layout-wrapper{
     border:1px solid blue;
     display: flex;
     flex-direction: column;

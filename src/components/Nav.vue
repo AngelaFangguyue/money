@@ -12,6 +12,7 @@
 
 <script lang="ts">
 
+
   import Icon from '@/components/Icon.vue';//视频中是将其导入在main.ts中
   // let importAll =(requireContext:__WebpackModuleApi.RequireContext)=>requireContext.keys().forEach(requireContext);
   // try{importAll(require.context('../assets/icons',true,/\.svg$/));}
@@ -32,10 +33,12 @@
 </script>
 
 <style lang="scss" scoped>
+  @import  '~@/assets/style/helper.scss';
+
 nav{
   display: flex;
   /*flex-direction: row;*/
-  box-shadow: 0 0 3px rgba(0,0,0,0.25);
+  @extend %outterShadow;
   font-size: 12px;
   > .item{
     padding:2px 0;
@@ -58,7 +61,8 @@ nav{
     /*}*/
   }
   > .item.selected {
-    color:red;
+    /*color:red;*/
+    color: $color-highlight;
   }
 }
 </style>
