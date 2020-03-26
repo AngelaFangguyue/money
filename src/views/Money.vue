@@ -1,10 +1,13 @@
 <template>
  <Layout class-perfix="money">
 {{record}}
-   <Numberpad @update:value="onUpdateAmount"/>
-   <Types as="asasas"  :value="record.type" @update:value="onUpdateType"/>
-   <Notes @update:value="onUpdateNotes"/>
-   <Tags :data-source.sync="tags" @update:value="onUpdateTags"/>
+<!--   <Numberpad :value="record.amount" @update:value="onUpdateAmount"/>-->
+   <Numberpad :value.sync="record.amount"/>
+<!--   <Types as="asasas"  :value="record.type" @update:value="onUpdateType"/>-->
+   <Types as="asasas"  :value.sync="record.type"/>
+<!--   <Notes :value="record.notes" @update:value="onUpdateNotes"/>-->
+   <Notes :value.sync="record.notes"/>
+   <Tags :data-source.sync="tags" :value.sync="record.tags" />
  </Layout>
 </template>
 
@@ -23,7 +26,7 @@
     tags: string[];
     notes: string;
     type: string;
-    amount: string;
+    amount: number;
   }
 
    @Component({
@@ -35,31 +38,31 @@
       tags:[],
       notes:'',
       type:'-',
-      amount:'0'
+      amount:10
     };
 
      a1 = '-';
     tags = ['衣','食','住','行'];
 
-     onUpdateTags(a: string[]){
-       this.record.tags = a;
-      console.log(a);
-     }
+     // onUpdateTags(a: string[]){
+     //   this.record.tags = a;
+     //  console.log(a);
+     // }
 
-     onUpdateNotes(a: string){
-       this.record.notes = a;
-       console.log(a);
-     }
+     // onUpdateNotes(a: string){
+     //   this.record.notes = a;
+     //   console.log(a);
+     // }
 
-     onUpdateType(a: string){
-       this.record.type = a;
-       console.log(a);
-     }
+     // onUpdateType(a: string){
+     //   this.record.type = a;
+     //   console.log(a);
+     // }
 
-     onUpdateAmount(a: string){
-       this.record.amount = a;
-       console.log(a);
-     }
+     // onUpdateAmount(a: string){
+     //   this.record.amount = parseFloat(a);
+     //   console.log(a);
+     // }
 
 
   }

@@ -15,6 +15,9 @@
 
   @Component
   export default class Tags extends Vue{
+
+    @Prop(Array) value!: string[];
+
     @Prop(Array) dataSource: string[] | undefined ;
     selectedTags: string[] = [];
 

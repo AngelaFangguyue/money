@@ -12,11 +12,11 @@
 
 <script lang="ts">
   import  Vue from 'vue';
-  import {Component, Watch} from 'vue-property-decorator';
+  import {Component, Prop, Watch} from 'vue-property-decorator';
 
   @Component
   export default class Notes extends Vue{
-    value1 = '';
+     value1 = '';
     // inputValue(event:KeyboardEvent){
     //   this.value = (event.target as HTMLInputElement).value;
     // }
@@ -24,6 +24,8 @@
     onValueChanged(){
       this.$emit("update:value",this.value1);
     }
+
+    @Prop(String) value!: string;
 
   }
 </script>
