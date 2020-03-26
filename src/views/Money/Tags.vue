@@ -43,10 +43,16 @@
 
     newTags(){
       const newTag = window.prompt("tags");
-      if(this.dataSource){
-        this.$emit("update:dataSource",[...this.dataSource,newTag]);
+      if (newTag===""){
+        window.alert("输入不能为空");
+      }else{
+        if(this.dataSource){
+          this.$emit("update:dataSource",[...this.dataSource,newTag]);
+        }
+        // if(this.dataSource){
+        // this.dataSource.push(newTag as string);
+        // }
       }
-
     }
 
   }
