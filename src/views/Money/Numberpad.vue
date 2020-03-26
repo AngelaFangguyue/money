@@ -50,7 +50,9 @@
 
     }
 
-    ok(){console.log('hi');}
+    ok(){console.log('hi');
+      this.$emit("update:value",this.output);
+    }
 
     remov(){
       // let leng = this.output.length - 1;

@@ -39,6 +39,9 @@
        // console.log("dianji1:",this.selectedTags);
       }
 //////////////
+
+      this.$emit("update:value",this.selectedTags);
+
     }
 
     newTags(){
