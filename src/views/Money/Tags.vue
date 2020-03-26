@@ -1,22 +1,55 @@
 <template>
   <div class="tags">
     <div class="new">
-      <button>新增标签</button>
+      <button @click="newTags">新增标签</button>
     </div>
     <ul class="current">
-      <li>衣</li>
-      <li>食</li>
-      <li>住</li>
-      <li>行</li>
+      <li v-for="i in dataSource" :key="i"  :class="{selected:selectedTags.indexOf(i)>=0}" @click="toggle(i)">{{i}}</li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
-  export default {
-    name: 'Tags',
+  import  Vue from 'vue';
+  import {Component, Prop} from 'vue-property-decorator';
 
-  };
+  @Component
+  export default class Tags extends Vue{
+    @Prop(Array) dataSource: string[] | undefined ;
+    selectedTags: string[] = [];
+
+    toggle(a: string){
+      //////////////
+      // if(event){
+      //   console.log(event);
+      //   if(event.target) {
+      //     console.log(event.target);
+      //     event.target.className  = "selected";
+      //   }
+      //}
+      ///////////////
+//////////////
+      const index = this.selectedTags.indexOf(a);
+      if(index>=0){
+        this.selectedTags.splice(index,1);
+        //console.log("dianji2:",this.selectedTags);
+
+      }else{
+        this.selectedTags.push(a);
+       // console.log("dianji1:",this.selectedTags);
+      }
+//////////////
+    }
+
+    newTags(){
+      const newTag = window.prompt("tags");
+      if(this.dataSource){
+        this.$emit("update:dataSource",[...this.dataSource,newTag]);
+      }
+
+    }
+
+  }
 </script>
 
 <style lang="scss" scoped>
@@ -31,7 +64,8 @@
       flex-wrap: wrap;
       > li{
         $h:24px;
-        background: #d9d9d9;
+        $bg:#d9d9d9;
+        background: $bg;
         height:$h;
         width: $h*2;
         border-radius: $h/2;
@@ -40,6 +74,10 @@
         margin-right: 12px;
         padding:  0 16px;
         margin-top: 4px;
+        &.selected{
+          background: darken($bg,50%);
+          color:white;
+        }
       }
     }
     > .new{
