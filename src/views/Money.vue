@@ -1,8 +1,8 @@
 <template>
  <Layout class-perfix="money">
-{{record}}
+{{recordList}}
 <!--   <Numberpad :value="record.amount" @update:value="onUpdateAmount"/>-->
-   <Numberpad :value.sync="record.amount"/>
+   <Numberpad :value.sync="record.amount" @update:record="addRecord"/>
 <!--   <Types as="asasas"  :value="record.type" @update:value="onUpdateType"/>-->
    <Types as="asasas"  :value.sync="record.type"/>
 <!--   <Notes :value="record.notes" @update:value="onUpdateNotes"/>-->
@@ -19,14 +19,16 @@
   import Numberpad from '@/views/Money/Numberpad.vue';
   import Types from '@/views/Money/Types.vue';
   import Tags from '@/views/Money/Tags.vue';
-  import {Component} from 'vue-property-decorator';
+  import {Component, Watch} from 'vue-property-decorator';
 
+window.localStorage.setItem("version","0.0.1");
 
   type Record = {
     tags: string[];
     notes: string;
     type: string;
     amount: number;
+    created?: Date;
   }
 
    @Component({
@@ -34,11 +36,13 @@
    })
   export default class Money extends Vue{
 
+    recordList: Record[] = JSON.parse(window.localStorage.getItem("recordList")||'[]');
+
     record: Record = {
       tags:[],
       notes:'',
       type:'-',
-      amount:10
+      amount:10,
     };
 
      a1 = '-';
@@ -64,6 +68,17 @@
      //   console.log(a);
      // }
 
+  addRecord(){
+    const record2 = JSON.parse(JSON.stringify(this.record));
+    record2.created = new Date();
+    this.recordList.push(record2);
+    //console.log("this.recordList:",this.recordList);
+  }
+
+  @Watch("recordList")
+    onRecordListChanged(){
+       window.localStorage.setItem("recordList",JSON.stringify(this.recordList));
+    }
 
   }
 </script>

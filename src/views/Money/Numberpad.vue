@@ -53,6 +53,8 @@
 
     ok(){console.log('hi');
       this.$emit("update:value",parseFloat(this.output));
+      this.$emit("update:record",parseFloat(this.output));
+      this.output = '0';
     }
 
     remov(){
