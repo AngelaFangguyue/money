@@ -21,7 +21,9 @@
   import Tags from '@/views/Money/Tags.vue';
   import {Component, Watch} from 'vue-property-decorator';
 
-window.localStorage.setItem("version","0.0.1");
+  const recordList = JSON.parse(window.localStorage.getItem("recordList")||'[]');
+
+  window.localStorage.setItem("version","0.0.1");
 
   type Record = {
     tags: string[];
@@ -36,7 +38,7 @@ window.localStorage.setItem("version","0.0.1");
    })
   export default class Money extends Vue{
 
-    recordList: Record[] = JSON.parse(window.localStorage.getItem("recordList")||'[]');
+    recordList: Record[] = recordList;
 
     record: Record = {
       tags:[],
