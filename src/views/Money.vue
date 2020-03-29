@@ -20,11 +20,11 @@
   import Types from '@/views/Money/Types.vue';
   import Tags from '@/views/Money/Tags.vue';
   import {Component, Watch} from 'vue-property-decorator';
-  import model from '@/model';
+  import recordListModel from '@/model/recordListModel';
   //const model = require('@/model.js').default;
 
   // const recordList = JSON.parse(window.localStorage.getItem("recordList")||'[]');
-  const recordList = model.fetch();
+  const recordList = recordListModel.fetch();
 
   window.localStorage.setItem("version","0.0.1");
 
@@ -68,7 +68,7 @@
      // }
 
   addRecord(){
-    const record2: RecordItem = model.clone(this.record);
+    const record2: RecordItem = recordListModel.clone(this.record);
     record2.created = new Date();
     this.recordList.push(record2);
     //console.log("this.recordList:",this.recordList);
@@ -77,7 +77,7 @@
   @Watch("recordList")
     onRecordListChanged(){
        //window.localStorage.setItem("recordList",JSON.stringify(this.recordList));
-       model.save(this.recordList);
+      recordListModel.save(this.record);
     }
 
   }
