@@ -15,7 +15,7 @@
   import {Component, Prop, Watch} from 'vue-property-decorator';
 
   @Component
-  export default class Notes extends Vue{
+  export default class FormItem extends Vue{
      value1 = '';
     // inputValue(event:KeyboardEvent){
     //   this.value = (event.target as HTMLInputElement).value;
@@ -34,7 +34,7 @@
 
 <style lang="scss" scoped>
   .notes{
-    background: #f5f5f5;
+    /*background: green;*/
     display: flex;
     align-items: center;
     padding-left: 16px;
@@ -42,7 +42,7 @@
     .name{padding-right: 16px;}
     input{
       flex-grow: 1;
-      height:64px;
+      height:40px;
       padding-right: 16px;
       background: transparent;
       border:none;

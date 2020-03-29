@@ -4,7 +4,8 @@
       <router-link :to="`/Label/EditLabel/${tag.id}`" class="tag" v-for="tag in tags" :key="tag.id" ><span>{{tag.name}}</span><Icon icon-name="#right"></Icon></router-link>
     </div>
     <div class="createTag-wrapper">
-      <button class="createTag" @click="createTag">新增标签</button>
+<!--      <button class="createTag" @click="createTag">新增标签</button>-->
+      <Dbutton class="createTag" v-on:click="createTag">新增标签</Dbutton>
     </div>
   </Layout>
 
@@ -16,11 +17,12 @@
  import Icon from '@/components/Icon.vue';
  import {Component} from 'vue-property-decorator';
  import tagListModel from '@/model/tagListModel';
+ import Dbutton from '@/views/Dbutton.vue';
 
 
  tagListModel.fetch();
 
-@Component({components:{Icon}})
+@Component({components:{Dbutton, Icon}})
   export default class Label extends Vue{
    tags = tagListModel.data;
   createTag(){

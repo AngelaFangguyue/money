@@ -1,12 +1,14 @@
 <template>
  <Layout class-perfix="money">
-{{recordList}}
+
 <!--   <Numberpad :value="record.amount" @update:value="onUpdateAmount"/>-->
    <Numberpad :value.sync="record.amount" @update:record="addRecord"/>
 <!--   <Types as="asasas"  :value="record.type" @update:value="onUpdateType"/>-->
    <Types as="asasas"  :value.sync="record.type"/>
 <!--   <Notes :value="record.notes" @update:value="onUpdateNotes"/>-->
-   <Notes :value.sync="record.notes" field-name="备注" place-holder="请输入备注"/>
+   <div class="notes">
+   <FormItem :value.sync="record.notes" field-name="备注" place-holder="请输入备注"/>
+   </div>
    <Tags :data-source.sync="tags" :value.sync="record.tags" />
  </Layout>
 </template>
@@ -15,7 +17,7 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import Notes from '@/views/Money/Notes.vue';
+  import FormItem from '@/views/Money/FormItem.vue';
   import Numberpad from '@/views/Money/Numberpad.vue';
   import Types from '@/views/Money/Types.vue';
   import Tags from '@/views/Money/Tags.vue';
@@ -32,7 +34,7 @@
 
 
    @Component({
-     components:{Notes,Numberpad,Types,Tags}
+     components:{FormItem,Numberpad,Types,Tags}
    })
   export default class Money extends Vue{
 
@@ -98,4 +100,7 @@
 
 
 <style lang="scss" scoped>
+  .notes{
+    padding: 12px 0;
+  }
 </style>
