@@ -6,7 +6,7 @@
 <!--   <Types as="asasas"  :value="record.type" @update:value="onUpdateType"/>-->
    <Types as="asasas"  :value.sync="record.type"/>
 <!--   <Notes :value="record.notes" @update:value="onUpdateNotes"/>-->
-   <Notes :value.sync="record.notes"/>
+   <Notes :value.sync="record.notes" field-name="备注" place-holder="请输入备注"/>
    <Tags :data-source.sync="tags" :value.sync="record.tags" />
  </Layout>
 </template>
@@ -21,6 +21,7 @@
   import Tags from '@/views/Money/Tags.vue';
   import {Component, Watch} from 'vue-property-decorator';
   import recordListModel from '@/model/recordListModel';
+  import tagListModel from '@/model/tagListModel';
   //const model = require('@/model.js').default;
 
   // const recordList = JSON.parse(window.localStorage.getItem("recordList")||'[]');
@@ -45,7 +46,9 @@
     };
 
      //a1 = '-';
-    tags = ['衣','食','住','行'];
+    //tags = ['衣','食','住','行'];
+
+     tags = tagListModel.fetch();
 
      // onUpdateTags(a: string[]){
      //   this.record.tags = a;
