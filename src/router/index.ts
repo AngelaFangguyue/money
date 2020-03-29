@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Money from '@/views/Money.vue';
 import Statistics from '@/views/Statistics.vue';
 import Nofound from '@/views/Nofound.vue';
+import EditLabel from '@/views/EditLabel.vue';
 
 
 
@@ -21,7 +22,7 @@ const routes = [
     component: Money
   },
   {
-    path: '/Lable',
+    path: '/Label',
     // name: 'About'，
     component: () => import(/* webpackChunkName: "about" */ '@/views/Lable.vue')
   },
@@ -29,6 +30,11 @@ const routes = [
     path: '/Statistics',
     // name: 'Home',
     component: Statistics
+  },
+  {
+    path: '/Label/EditLabel/:id',
+    // name: 'Home',
+    component: EditLabel
   },
   {
     path: '*',
