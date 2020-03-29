@@ -1,13 +1,14 @@
 <template>
- <Layout class-perfix="money">
 
+ <Layout class-perfix="money">
+   {{record}}
 <!--   <Numberpad :value="record.amount" @update:value="onUpdateAmount"/>-->
    <Numberpad :value.sync="record.amount" @update:record="addRecord"/>
 <!--   <Types as="asasas"  :value="record.type" @update:value="onUpdateType"/>-->
    <Types as="asasas"  :value.sync="record.type"/>
 <!--   <Notes :value="record.notes" @update:value="onUpdateNotes"/>-->
    <div class="notes">
-   <FormItem :value.sync="record.notes" field-name="备注" place-holder="请输入备注"/>
+   <FormItem @update:value="onUpdateNotes" field-name="备注" place-holder="请输入备注"/>
    </div>
    <Tags :data-source.sync="tags" :value.sync="record.tags" />
  </Layout>
@@ -26,9 +27,9 @@
   import tagListModel from '@/model/tagListModel';
   //const model = require('@/model.js').default;
 
-  // const recordList = JSON.parse(window.localStorage.getItem("recordList")||'[]');
-  const recordList = recordListModel.fetch();
-
+  const recordList = JSON.parse(window.localStorage.getItem("recordList")||'[]');
+  //const recordList = recordListModel.fetch();
+  console.log("recordList:",typeof (recordList));
   window.localStorage.setItem("version","0.0.1");
 
 
@@ -57,10 +58,10 @@
      //  console.log(a);
      // }
 
-     // onUpdateNotes(a: string){
-     //   this.record.notes = a;
-     //   console.log(a);
-     // }
+     onUpdateNotes(a: string){
+       this.record.notes = a;
+       console.log(a);
+     }
 
      // onUpdateType(a: string){
      //   this.record.type = a;

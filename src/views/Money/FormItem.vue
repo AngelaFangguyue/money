@@ -5,7 +5,8 @@
       <span class="name">{{fieldName}}</span>
 <!--      <input type="text" :value="value" @input="value=$event.target.value" placeholder="在这里输入备注">-->
 <!--      <input type="text" :value="value" @input="inputValue" placeholder="在这里输入备注">-->
-      <input type="text" v-model="value1" :placeholder="placeHolder">
+<!--      <input type="text" v-model="value1" :placeholder="placeHolder">-->
+      <input type="text" :value="value1" @input="onValueChanged($event.target.value)" :placeholder="placeHolder">
     </label>
   </div>
 </template>
@@ -16,13 +17,14 @@
 
   @Component
   export default class FormItem extends Vue{
-     value1 = '';
+     //value1 = '';
+     @Prop({default:''}) readonly value1!: string;
     // inputValue(event:KeyboardEvent){
     //   this.value = (event.target as HTMLInputElement).value;
     // }
     @Watch("value1")
-    onValueChanged(){
-      this.$emit("update:value",this.value1);
+    onValueChanged(value: string){
+      this.$emit("update:value",value);
     }
 
     @Prop(String) value!: string;
