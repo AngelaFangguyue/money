@@ -16,25 +16,17 @@
  import Vue from 'vue';
  import Icon from '@/components/Icon.vue';
  import {Component} from 'vue-property-decorator';
- import tagListModel from '@/model/tagListModel';
  import Dbutton from '@/views/Dbutton.vue';
 
 
- //tagListModel.fetch();
 
 @Component({components:{Dbutton, Icon}})
   export default class Label extends Vue{
-   //tags = tagListModel.data;
   tags = window.tagList;
   createTag(){
     const name = window.prompt("请输入新增标签名");
     if(name){
-      const result = tagListModel.create(name);
-      if(result==="success"){
-        window.alert("创建成功")
-      }else if(result==="duplicated"){
-        window.alert("标签已存在")
-      }
+      window.createTag(name);
     }
   }
 
@@ -73,6 +65,5 @@
       text-align: center;
       margin-top:28px;
     }
-
   }
 </style>

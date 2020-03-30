@@ -24,7 +24,6 @@
   import Tags from '@/views/Money/Tags.vue';
   import {Component, Watch} from 'vue-property-decorator';
   import recordListModel from '@/model/recordListModel';
-  import tagListModel from '@/model/tagListModel';
   //const model = require('@/model.js').default;
 
   //const recordList = JSON.parse(window.localStorage.getItem("recordList")||'[]');
@@ -32,14 +31,13 @@
   console.log("recordList:",typeof (recordList));
   window.localStorage.setItem("version","0.0.1");
 
-  // const  tagList = tagListModel.fetch();
-  //tagListModel.fetch();
+
 
    @Component({
      components:{FormItem,Numberpad,Types,Tags}
    })
   export default class Money extends Vue{
-     // tags = tagListModel.fetch();
+
      //tags = tagList;
      tags = window.tagList;
 

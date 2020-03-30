@@ -24,7 +24,7 @@ const routes = [
   {
     path: '/Label',
     // name: 'About'，
-    component: () => import(/* webpackChunkName: "about" */ '@/views/Lable.vue')
+    component: () => import(/* webpackChunkName: "about" */ '@/views/Label.vue')
   },
   {
     path: '/Statistics',
