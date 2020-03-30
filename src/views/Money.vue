@@ -3,7 +3,7 @@
  <Layout class-perfix="money">
    {{record}}
 <!--   <Numberpad :value="record.amount" @update:value="onUpdateAmount"/>-->
-   <Numberpad :value.sync="record.amount" @update:record="addRecord"/>
+   <Numberpad :value.sync="record.amount" @update:record="saveRecord"/>
 <!--   <Types as="asasas"  :value="record.type" @update:value="onUpdateType"/>-->
    <Types as="asasas"  :value.sync="record.type"/>
 <!--   <Notes :value="record.notes" @update:value="onUpdateNotes"/>-->
@@ -27,8 +27,8 @@
   import tagListModel from '@/model/tagListModel';
   //const model = require('@/model.js').default;
 
-  const recordList = JSON.parse(window.localStorage.getItem("recordList")||'[]');
-  //const recordList = recordListModel.fetch();
+  //const recordList = JSON.parse(window.localStorage.getItem("recordList")||'[]');
+  const recordList = recordListModel.fetch();
   console.log("recordList:",typeof (recordList));
   window.localStorage.setItem("version","0.0.1");
 
@@ -76,17 +76,14 @@
      //   console.log(a);
      // }
 
-  addRecord(){
-    const record2: RecordItem = recordListModel.clone(this.record);
-    record2.created = new Date();
-    this.recordList.push(record2);
-    //console.log("this.recordList:",this.recordList);
+  saveRecord(){
+   recordListModel.create(this.record);
   }
 
   @Watch("recordList")
     onRecordListChanged(){
        //window.localStorage.setItem("recordList",JSON.stringify(this.recordList));
-      recordListModel.save(this.recordList);
+      recordListModel.save();
     }
 
   }
