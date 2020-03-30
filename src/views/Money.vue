@@ -33,7 +33,7 @@
   window.localStorage.setItem("version","0.0.1");
 
   // const  tagList = tagListModel.fetch();
-  tagListModel.fetch();
+  //tagListModel.fetch();
 
    @Component({
      components:{FormItem,Numberpad,Types,Tags}
@@ -41,7 +41,7 @@
   export default class Money extends Vue{
      // tags = tagListModel.fetch();
      //tags = tagList;
-     tags = tagListModel.data;
+     tags = window.tagList;
 
     recordList = recordList;
 

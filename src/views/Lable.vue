@@ -20,11 +20,12 @@
  import Dbutton from '@/views/Dbutton.vue';
 
 
- tagListModel.fetch();
+ //tagListModel.fetch();
 
 @Component({components:{Dbutton, Icon}})
   export default class Label extends Vue{
-   tags = tagListModel.data;
+   //tags = tagListModel.data;
+  tags = window.tagList;
   createTag(){
     const name = window.prompt("请输入新增标签名");
     if(name){
