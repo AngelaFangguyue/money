@@ -1,15 +1,15 @@
 <template>
   <Layout>
     <div class="navBar">
-      <Icon class="lefticon" icon-name="#left"></Icon>
+      <Icon class="lefticon" icon-name="#left" @click="goBack"></Icon>
       <span class="title">编辑标签</span>
       <span class="righticon"></span>
     </div>
     <div class="form-wrapper">
-      <FormItem :value1="tag" field-name="标签" place-holder="请输入标签名"></FormItem>
+      <FormItem :value1="tag.name" @update:value1="updateTag" field-name="标签" place-holder="请输入标签名"></FormItem>
     </div>
 <div class="button-wrapper">
-  <Dbutton>删除标签</Dbutton>
+  <Dbutton @click="deleteTag">删除标签</Dbutton>
 </div>
 
   </Layout>
@@ -27,17 +27,35 @@
   })
   export default class EditLabel extends Vue {
     tag?: {id: string;name: string} = undefined;
+
     created(){
-      //console.log(this.$route.params.id);
       const id = this.$route.params.id;
       tagListModel.fetch();
       const tag = tagListModel.data.filter(item=>item.id===id)[0];
       if(tag){
-        this.tag = tag.name;
-        // console.log('id:', id);
+        this.tag = tag;
       }else{
         this.$router.replace('/404');//默认的404页面
       }
+    }
+
+    updateTag(a: string){
+      console.log(a);
+      if(this.tag){
+        tagListModel.update(this.tag.id,a);
+      }
+    }
+
+    deleteTag(id: string){
+      if(this.tag){
+        tagListModel.delete(this.tag.id);
+        this.$router.back();
+      }
+    }
+
+    goBack(){
+      console.log('hi');
+      this.$router.back();
     }
   }
 </script>

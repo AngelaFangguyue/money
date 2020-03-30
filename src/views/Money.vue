@@ -8,7 +8,7 @@
    <Types as="asasas"  :value.sync="record.type"/>
 <!--   <Notes :value="record.notes" @update:value="onUpdateNotes"/>-->
    <div class="notes">
-   <FormItem @update:value="onUpdateNotes" field-name="备注" place-holder="请输入备注"/>
+   <FormItem @update:value1="onUpdateNotes" field-name="备注" place-holder="请输入备注"/>
    </div>
    <Tags :data-source.sync="tags" :value.sync="record.tags" />
  </Layout>

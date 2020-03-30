@@ -24,7 +24,7 @@
     // }
     @Watch("value1")
     onValueChanged(value: string){
-      this.$emit("update:value",value);
+      this.$emit("update:value1",value);
     }
 
     @Prop(String) value!: string;
