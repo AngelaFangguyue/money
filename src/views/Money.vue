@@ -32,12 +32,16 @@
   console.log("recordList:",typeof (recordList));
   window.localStorage.setItem("version","0.0.1");
 
-
+  // const  tagList = tagListModel.fetch();
+  tagListModel.fetch();
 
    @Component({
      components:{FormItem,Numberpad,Types,Tags}
    })
   export default class Money extends Vue{
+     // tags = tagListModel.fetch();
+     //tags = tagList;
+     tags = tagListModel.data;
 
     recordList = recordList;
 
@@ -51,7 +55,6 @@
      //a1 = '-';
     //tags = ['衣','食','住','行'];
 
-     tags = tagListModel.fetch();
 
      // onUpdateTags(a: string[]){
      //   this.record.tags = a;
@@ -83,7 +86,7 @@
   @Watch("recordList")
     onRecordListChanged(){
        //window.localStorage.setItem("recordList",JSON.stringify(this.recordList));
-      recordListModel.save(this.record);
+      recordListModel.save(this.recordList);
     }
 
   }
