@@ -18,16 +18,17 @@
  import {Component} from 'vue-property-decorator';
  import Dbutton from '@/views/Dbutton.vue';
 
-
+import store from '@/store/index2';
 
 @Component({components:{Dbutton, Icon}})
   export default class Label extends Vue{
-  tags = window.tagList;
+  tags = store.tagList;
   createTag(){
     const name = window.prompt("请输入新增标签名");
     if(name){
-      window.createTag(name);
+      store.createTag(name);
     }
+    console.log("3》store.createTag:",this.tags);
   }
 
   }

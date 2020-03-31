@@ -14,6 +14,9 @@ Vue.config.productionTip = false;
 Vue.component('Nav',Nav);
 Vue.component('Layout',Layout);
 
+
+
+
 window.tagList = tagListModel.fetch();
 window.createTag = (name: string)=>{
   const result = tagListModel.create(name);
@@ -22,6 +25,7 @@ window.createTag = (name: string)=>{
   }else if(result==="duplicated"){
     window.alert("标签已存在")
   }
+  console.log("2》window.createTag:",window.tagList);
 };
 window.deleteTag = (id)=>{
   return tagListModel.delete(id);
@@ -34,7 +38,7 @@ window.findTag = (id)=>{
 };
 
 window.recordList = recordListModel.fetch();
-window.createRecord = (record: RecordItem)=>recordListModel.create(record);
+window.createRecord = (record: RecordItem)=>{return recordListModel.create(record)};
 
 new Vue({
   router,

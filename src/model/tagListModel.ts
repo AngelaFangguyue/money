@@ -10,6 +10,7 @@ const tagListModel: TagListModel = {
   data:[],
   fetch(){
     this.data =  JSON.parse(window.localStorage.getItem(localStorageKey)||'[]') ;
+    console.log("11》tagListModel.fetch:",this.data);
     return this.data;
   },
   save(){
@@ -22,6 +23,7 @@ const tagListModel: TagListModel = {
       const id = createId().toString();
       this.data.push({id:id,name:name});
       this.save();
+      console.log("1》tagListModel.create:",this.data);
       return "success";
     }else{
       return 'duplicated';

@@ -21,6 +21,8 @@
   import Icon from '@/components/Icon.vue';
   import FormItem from '@/views/Money/FormItem.vue';
   import Dbutton from '@/views/Dbutton.vue';
+  import store from '@/store/index2';
+
   @Component({
     components: {Dbutton, FormItem, Icon}
   })
@@ -29,7 +31,7 @@
 
     created(){
       const id = this.$route.params.id;
-      const tag = window.findTag(id);
+      const tag = store.findTag(id);
       if(tag){
         this.tag = tag;
       }else{
@@ -40,13 +42,13 @@
     updateTag(a: string){
       console.log(a);
       if(this.tag){
-        window.updateTag(this.tag.id,a);
+        store.updateTag(this.tag.id,a);
       }
     }
 
     deleteTag(id: string){
       if(this.tag){
-        window.deleteTag(this.tag.id);
+        store.deleteTag(this.tag.id);
         this.$router.back();
       }
     }

@@ -1,7 +1,7 @@
 <template>
 
  <Layout class-perfix="money">
-   {{record}}
+   {{recordList}}
 <!--   <Numberpad :value="record.amount" @update:value="onUpdateAmount"/>-->
    <Numberpad :value.sync="record.amount" @update:record="saveRecord"/>
 <!--   <Types as="asasas"  :value="record.type" @update:value="onUpdateType"/>-->
@@ -25,7 +25,7 @@
   import {Component, Watch} from 'vue-property-decorator';
   import recordListModel from '@/model/recordListModel';
   //const model = require('@/model.js').default;
-
+import store from '@/store/index2';
 
 
   window.localStorage.setItem("version","0.0.1");
@@ -38,9 +38,9 @@
   export default class Money extends Vue{
 
      //tags = tagList;
-     tags = window.tagList;
+     tags = store.tagList;
 
-    recordList = window.recordList;
+    recordList = store.recordList;
 
     record: RecordItem = {
       tags:[],
@@ -74,7 +74,7 @@
      // }
 
   saveRecord(){
-   window.createRecord(this.record);
+   store.createRecord(this.record);
   }
 
   // @Watch("recordList")
