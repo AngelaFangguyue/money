@@ -26,9 +26,8 @@
   import recordListModel from '@/model/recordListModel';
   //const model = require('@/model.js').default;
 
-  //const recordList = JSON.parse(window.localStorage.getItem("recordList")||'[]');
-  const recordList = recordListModel.fetch();
-  console.log("recordList:",typeof (recordList));
+
+
   window.localStorage.setItem("version","0.0.1");
 
 
@@ -41,7 +40,7 @@
      //tags = tagList;
      tags = window.tagList;
 
-    recordList = recordList;
+    recordList = window.recordList;
 
     record: RecordItem = {
       tags:[],
@@ -75,14 +74,14 @@
      // }
 
   saveRecord(){
-   recordListModel.create(this.record);
+   window.createRecord(this.record);
   }
 
-  @Watch("recordList")
-    onRecordListChanged(){
-       //window.localStorage.setItem("recordList",JSON.stringify(this.recordList));
-      recordListModel.save();
-    }
+  // @Watch("recordList")
+  //   onRecordListChanged(){
+  //      //window.localStorage.setItem("recordList",JSON.stringify(this.recordList));
+  //     recordListModel.save();
+  //   }
 
   }
 </script>
