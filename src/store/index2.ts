@@ -8,6 +8,8 @@ import tagStore from '@/store/tagStore';
 //   ...tagStore,
 // }
 const store = {
+  count:11,
+  addCount(){this.count+=1},
   ...recordStore,
   ...tagStore,
 };

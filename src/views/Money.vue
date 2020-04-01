@@ -10,7 +10,10 @@
    <div class="notes">
    <FormItem @update:value1="onUpdateNotes" field-name="备注" place-holder="请输入备注"/>
    </div>
-   <Tags :data-source.sync="tags" :value.sync="record.tags" />
+<!--   <Tags :data-source.sync="tags" :value.sync="record.tags" />-->
+   <Tags/>
+<!--   <button @click="add">+++</button>-->
+<!--   {{countd}}-&#45;&#45;+++-&#45;&#45;{{count2}}-->
  </Layout>
 </template>
 
@@ -27,21 +30,24 @@
   //const model = require('@/model.js').default;
 import store from '@/store/index2';
 
-  console.log(store);
+  //console.log(store);
 
   window.localStorage.setItem("version","0.0.1");
 
 
 
    @Component({
-     components:{FormItem,Numberpad,Types,Tags}
-   })
+     components:{FormItem,Numberpad,Types,Tags},
+     computed:{
+       countd(){return store.count},
+       recordList(){return store.recordList}
+   }})
   export default class Money extends Vue{
 
      //tags = tagList;
-     tags = store.tagList;
+     //tags = store.tagList;
 
-    recordList = store.recordList;
+   // recordList = store.recordList;
 
     record: RecordItem = {
       tags:[],
@@ -83,6 +89,12 @@ import store from '@/store/index2';
   //      //window.localStorage.setItem("recordList",JSON.stringify(this.recordList));
   //     recordListModel.save();
   //   }
+
+    // count2 = store.count;
+    //  add(){
+    //    store.addCount();
+    //    //this.count2 +=1;
+    //  }
 
   }
 </script>

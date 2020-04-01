@@ -47,7 +47,7 @@
 //}
 
     mounted(){
-      console.log(this.as);
+      //console.log(this.as);
     }
     @Prop(String) as: string|undefined;
 
