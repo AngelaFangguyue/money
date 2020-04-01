@@ -23,10 +23,11 @@
   import Types from '@/views/Money/Types.vue';
   import Tags from '@/views/Money/Tags.vue';
   import {Component, Watch} from 'vue-property-decorator';
-  import recordListModel from '@/model/recordListModel';
+ // import recordListModel from '@/model/recordListModel';
   //const model = require('@/model.js').default;
 import store from '@/store/index2';
 
+  console.log(store);
 
   window.localStorage.setItem("version","0.0.1");
 

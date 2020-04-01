@@ -1,7 +1,7 @@
 import recordStore from '@/store/recordStore';
 import tagStore from '@/store/tagStore';
-import recordListModel from '@/model/recordListModel';
-import tagListModel from '@/model/tagListModel';
+//import recordListModel from '@/model/recordListModel';
+//import tagListModel from '@/model/tagListModel';
 
 // export default {
 //   ...recordStore,
