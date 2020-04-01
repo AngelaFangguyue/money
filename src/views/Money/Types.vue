@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div >
     <ul class="types">
       <li :class="value==='-'&& 'selected'" @click="selectType('-')">支出</li>
       <li :class="value==='+'&& 'selected'" @click="selectType('+')">收入</li>

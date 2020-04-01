@@ -1,6 +1,6 @@
 <template>
 
- <Layout class-perfix="money">
+ <Layout class-perfix="money" >
    {{recordList}}
 <!--   <Numberpad :value="record.amount" @update:value="onUpdateAmount"/>-->
    <Numberpad :value.sync="record.amount" @update:record="saveRecord"/>
@@ -14,6 +14,8 @@
    <Tags/>
 <!--   <button @click="add">+++</button>-->
 <!--   {{countd}}-&#45;&#45;+++-&#45;&#45;{{count2}}-->
+      <button @click="$store.commit('increment')">+++</button>
+      {{testcount}}
  </Layout>
 </template>
 
@@ -28,7 +30,8 @@
   import {Component, Watch} from 'vue-property-decorator';
  // import recordListModel from '@/model/recordListModel';
   //const model = require('@/model.js').default;
-import store from '@/store/index2';
+import store2 from '@/store/index2';
+
 
   //console.log(store);
 
@@ -39,8 +42,12 @@ import store from '@/store/index2';
    @Component({
      components:{FormItem,Numberpad,Types,Tags},
      computed:{
-       countd(){return store.count},
-       recordList(){return store.recordList}
+       // countd(){return store.count},
+       recordList(){return store2.recordList},
+
+       testcount(){
+         return this.$store.state.count;
+       }
    }})
   export default class Money extends Vue{
 
@@ -81,7 +88,7 @@ import store from '@/store/index2';
      // }
 
   saveRecord(){
-   store.createRecord(this.record);
+   store2.createRecord(this.record);
   }
 
   // @Watch("recordList")
