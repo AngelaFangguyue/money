@@ -14,8 +14,8 @@
    <Tags/>
 <!--   <button @click="add">+++</button>-->
 <!--   {{countd}}-&#45;&#45;+++-&#45;&#45;{{count2}}-->
-      <button @click="$store.commit('increment')">+++</button>
-      {{testcount}}
+<!--      <button @click="$store.commit('increment')">+++</button>-->
+<!--      {{testcount}}-->
  </Layout>
 </template>
 
@@ -30,7 +30,7 @@
   import {Component, Watch} from 'vue-property-decorator';
  // import recordListModel from '@/model/recordListModel';
   //const model = require('@/model.js').default;
-import store2 from '@/store/index2';
+//import store2 from '@/store/index2';
 
 
   //console.log(store);
@@ -42,15 +42,18 @@ import store2 from '@/store/index2';
    @Component({
      components:{FormItem,Numberpad,Types,Tags},
      computed:{
-       // countd(){return store.count},
-       recordList(){return store2.recordList},
+       // countd(){return store.count},//测试值和地址的差别，不管是值还是地址都放在computed里，把store作为data放在App.vue中
+       recordList(){return this.$store.state.recordList},
 
-       testcount(){
-         return this.$store.state.count;
-       }
+       // testcount(){
+       //   return this.$store.state.count;//vuex初体验做的测试
+       // }
    }})
   export default class Money extends Vue{
 
+     created(){
+       this.$store.commit("fetchRecords");
+     }
      //tags = tagList;
      //tags = store.tagList;
 
@@ -87,9 +90,12 @@ import store2 from '@/store/index2';
      //   console.log(a);
      // }
 
-  saveRecord(){
-   store2.createRecord(this.record);
-  }
+  // saveRecord(){
+  //  store2.createRecord(this.record);
+  // }
+     saveRecord(){
+       this.$store.commit("createRecord",this.record);
+     }
 
   // @Watch("recordList")
   //   onRecordListChanged(){

@@ -20,16 +20,16 @@
   </div>
 </template>
 
-<script>
-  import store from "@/store/index2";
-  import Vue from 'vue';
-  import {Component} from 'vue-property-decorator';
-  @Component
-  export default class App extends Vue{
-    store = store;
-  }
+<!--<script>-->
+<!--  import store from "@/store/index2";-->
+<!--  import Vue from 'vue';-->
+<!--  import {Component} from 'vue-property-decorator';-->
+<!--  @Component-->
+<!--  export default class App extends Vue{-->
+<!--    store = store;-->
+<!--  }-->
 
-</script>
+<!--</script>-->
 
 <style lang="scss">
   /**{*/
