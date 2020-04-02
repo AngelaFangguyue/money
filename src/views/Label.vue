@@ -1,7 +1,7 @@
 <template>
   <Layout>
     <div class="tags">
-      <router-link :to="`/Label/EditLabel/${tag.id}`" class="tag" v-for="tag in tags" :key="tag.id" ><span>{{tag.name}}</span><Icon icon-name="#right"></Icon></router-link>
+      <router-link :to="`/Label/EditLabel/${tag.id}`" class="tag" v-for="tag in tagList" :key="tag.id" ><span>{{tag.name}}</span><Icon icon-name="#right"></Icon></router-link>
     </div>
     <div class="createTag-wrapper">
 <!--      <button class="createTag" @click="createTag">新增标签</button>-->
@@ -18,17 +18,24 @@
  import {Component} from 'vue-property-decorator';
  import Dbutton from '@/views/Dbutton.vue';
 
-import store from '@/store/index2';
+//import store from '@/store/index2';
 
-@Component({components:{Dbutton, Icon}})
+@Component({components:{Dbutton, Icon},
+computed:{
+  tagList(){
+    return this.$store.state.tagList;
+  }
+}
+})
   export default class Label extends Vue{
-  tags = store.tagList;
+  // tags = store.tagList;
+  created(){
+    this.$store.commit('fetchTags');
+  }
   createTag(){
-    const name = window.prompt("请输入新增标签名");
-    if(name){
-      store.createTag(name);
-    }
-    console.log("3》store.createTag:",this.tags);
+    const name = window.prompt("请输入标签名");
+    if (!name){return window.alert("标签名不能为空");}
+    this.$store.commit('createTag',name);
   }
 
   }

@@ -21,42 +21,47 @@
   import Icon from '@/components/Icon.vue';
   import FormItem from '@/views/Money/FormItem.vue';
   import Dbutton from '@/views/Dbutton.vue';
-  import store from '@/store/index2';
+ // import store from '@/store/index2';
 
   @Component({
     components: {Dbutton, FormItem, Icon}
   })
   export default class EditLabel extends Vue {
     tag?: {id: string;name: string} = undefined;
-
-    created(){
-      const id = this.$route.params.id;
-      const tag = store.findTag(id);
-      if(tag){
-        this.tag = tag;
-      }else{
-        this.$router.replace('/404');//默认的404页面
-      }
-    }
-
-    updateTag(a: string){
-      console.log(a);
-      if(this.tag){
-        store.updateTag(this.tag.id,a);
-      }
-    }
-
-    deleteTag(id: string){
-      if(this.tag){
-        store.deleteTag(this.tag.id);
-        this.$router.back();
-      }
-    }
-
-    goBack(){
-      console.log('hi');
-      this.$router.back();
-    }
+//TODO
+//     created(){
+//       const id = this.$route.params.id;
+//       console.log("id",id);
+//       const tag = store.findTag(id);
+//       let tag = this.$store.commit('findTag',id);
+//       console.log(tag);
+      // if(typeof(tag)===void){
+      //   if(tag){
+      //     this.tag = tag;
+      //   }else{
+      //     this.$router.replace('/404');//默认的404页面
+      //   }
+      // }
+    //}
+//TODO
+    // updateTag(a: string){
+    //   console.log(a);
+    //   if(this.tag){
+    //     this.$store.commit('updateTag',{this.tag.id,a});
+    //   }
+    // }
+//TODO
+    // deleteTag(id: string){
+    //   if(this.tag){
+    //     this.$store.commit('deleteTag',this.tag.id);
+    //     this.$router.back();
+    //   }
+    // }
+//TODO
+    // goBack(){
+    //   console.log('hi');
+    //   this.$router.back();
+    // }
   }
 </script>
 
