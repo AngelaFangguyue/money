@@ -41,18 +41,21 @@
 
    @Component({
      components:{FormItem,Numberpad,Types,Tags},
-     computed:{
-       // countd(){return store.count},//测试值和地址的差别，不管是值还是地址都放在computed里，把store作为data放在App.vue中
-       recordList(){return this.$store.state.recordList},
-
-       // testcount(){
-       //   return this.$store.state.count;//vuex初体验做的测试
-       // }
-   }})
+     // computed:{
+     //   // countd(){return store.count},//测试值和地址的差别，不管是值还是地址都放在computed里，把store作为data放在App.vue中
+     //   recordList(){return this.$store.state.recordList},
+     //
+     //   // testcount(){
+     //   //   return this.$store.state.count;//vuex初体验做的测试
+     //   // }
+     // }
+   })
   export default class Money extends Vue{
 
+     get recordList(){return this.$store.state.recordList}
+
      created(){
-       this.$store.commit("fetchRecords");
+       this.$store.commit("fetchRecords");//
      }
      //tags = tagList;
      //tags = store.tagList;

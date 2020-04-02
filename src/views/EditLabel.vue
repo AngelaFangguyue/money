@@ -6,7 +6,7 @@
       <span class="righticon"></span>
     </div>
     <div class="form-wrapper">
-      <FormItem :value1="tag.name" @update:value1="updateTag" field-name="标签" place-holder="请输入标签名"></FormItem>
+      <FormItem :value1="currentTag.name" @update:value1="updateTag" field-name="标签" place-holder="请输入标签名"></FormItem>
     </div>
 <div class="button-wrapper">
   <Dbutton @click="deleteTag">删除标签</Dbutton>
@@ -24,44 +24,42 @@
  // import store from '@/store/index2';
 
   @Component({
-    components: {Dbutton, FormItem, Icon}
+    components: {Dbutton, FormItem, Icon},
+    // computed:{currentTag(){return this.$store.state.currentTag}}
   })
   export default class EditLabel extends Vue {
-    tag?: {id: string;name: string} = undefined;
+    // tag?: {id: string;name: string} = undefined;
+  get currentTag(){
+    return this.$store.state.currentTag;
+  }
+
+    created(){
+      const id = this.$route.params.id;
+      //this.currentTag = this.$store.commit('setCurrentTag',id);//commit的返回值是void，所以不能这样写，去获取tag
+
+      this.$store.commit('setCurrentTag',id);
+        if(!this.currentTag){
+          this.$router.replace('/404');//默认的404页面
+        }
+    }
 //TODO
-//     created(){
-//       const id = this.$route.params.id;
-//       console.log("id",id);
-//       const tag = store.findTag(id);
-//       let tag = this.$store.commit('findTag',id);
-//       console.log(tag);
-      // if(typeof(tag)===void){
-      //   if(tag){
-      //     this.tag = tag;
-      //   }else{
-      //     this.$router.replace('/404');//默认的404页面
-      //   }
+    updateTag(a: string){
+      // if(this.tag){
+      //   this.$store.commit('updateTag',a);
       // }
-    //}
+    }
 //TODO
-    // updateTag(a: string){
-    //   console.log(a);
-    //   if(this.tag){
-    //     this.$store.commit('updateTag',{this.tag.id,a});
-    //   }
-    // }
-//TODO
-    // deleteTag(id: string){
-    //   if(this.tag){
-    //     this.$store.commit('deleteTag',this.tag.id);
-    //     this.$router.back();
-    //   }
-    // }
-//TODO
-    // goBack(){
-    //   console.log('hi');
-    //   this.$router.back();
-    // }
+    deleteTag(id: string){
+      // if(this.tag){
+      //   this.$store.commit('deleteTag',this.tag.id);
+      //   this.$router.back();
+      // }
+    }
+
+    goBack(){
+      console.log('hi');
+      this.$router.back();
+    }
   }
 </script>
 

@@ -20,9 +20,13 @@
 //import store from '@/store/index2';
 
 @Component({components:{Dbutton, Icon},
-computed:{tagList(){return this.$store.state.tagList;}}
+// computed:{tagList(){return this.$store.state.tagList;}}
 })
   export default class Label extends mixins(TagHelper){
+
+  get tagList(){
+    return this.$store.state.tagList;
+  }
   created(){
     this.$store.commit('fetchTags');
   }
