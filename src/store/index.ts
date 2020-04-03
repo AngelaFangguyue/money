@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import clone from '@/lib/clone';
 import createId from '@/lib/createId';
+import router from '@/router';
 
 Vue.use(Vuex)
 
@@ -60,40 +61,48 @@ const store = new Vuex.Store({
         //return 'duplicated';
       }
     },
-    //TODO
-    // deleteTag(state,id: string){
-    //   //return tagListModel.delete(id);
-    //   let index = -1;
-    //   for(let i=0;i<state.tagList.length;i++){
-    //     if(state.tagList[i].id===id){
-    //       index = i;
-    //       break;
-    //     }
-    //   }
-    //   state.tagList.splice(index,1);
-    //   store.commit('saveTags')
-    //  // return true;
-    // },
-    ////////////////////////////
-    //TODO
-    // updateTag(state,{id,name}){
-    //   //return tagListModel.update(id,name);
-    //   //TODO
-    //   const idList = state.tagList.map(item=>item.id);
-    //   if(idList.indexOf(id)>=0){
-    //     const names = state.tagList.map(item=>item.name);
-    //     if(names.indexOf(name)>=0){
-    //       //return "duplicated";
-    //     }else{
-    //       const tag =  state.tagList.filter(item=>item.id===id)[0];
-    //       tag.name = name;
-    //       store.commit('saveTags');
-    //      // return "success";
-    //     }
-    //   }else{
-    //     return "not found";
-    //   }
-    // },
+    removeTag(state,id: string){
+      //return tagListModel.delete(id);
+      let index = -1;
+      for(let i=0;i<state.tagList.length;i++){
+        if(state.tagList[i].id===id){
+          index = i;
+          break;
+        }
+      }
+      if(index>=0){
+        state.tagList.splice(index,1);
+        store.commit('saveTags');
+        router.back();
+      }else{
+        window.alert("删除失败");
+      }
+
+     // return true;
+    },
+    updateTag(state,object: {id: string;name: string}){
+      //return tagListModel.update(id,name);
+      const {id,name} = object;
+      const idList = state.tagList.map(item=>item.id);
+      //console.log(id);
+      if(idList.indexOf(id)>=0){
+        const names = state.tagList.map(item=>item.name);
+        if(names.indexOf(name)>=0){
+          //return "duplicated";
+          window.alert("duplicated");
+
+        }else{
+          const tag =  state.tagList.filter(item=>item.id===id)[0];
+          tag.name = name;
+          store.commit('saveTags');
+         // return "success";
+         // window.alert("success");
+        }
+      }else{
+        window.alert("not found");
+        //return "not found";
+      }
+    },
   }
   // actions: {
   // },

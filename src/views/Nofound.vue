@@ -2,8 +2,8 @@
   <div>404
 <!-- <Nav/>-->
     <div>
-      <router-link to="/">返回首页</router-link>|
-      <a href="#/">返回首页</a>
+      <router-link to="/">返回首页1</router-link>|
+      <a href="#/">返回首页2</a>
     </div>
 
   </div>

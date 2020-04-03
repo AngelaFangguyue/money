@@ -11,23 +11,22 @@
 <div class="button-wrapper">
   <Dbutton @click="deleteTag">删除标签</Dbutton>
 </div>
-
   </Layout>
 </template>
-
 <script lang="ts">
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import Icon from '@/components/Icon.vue';
   import FormItem from '@/views/Money/FormItem.vue';
   import Dbutton from '@/views/Dbutton.vue';
- // import store from '@/store/index2';
-
-  @Component({
-    components: {Dbutton, FormItem, Icon},
-    // computed:{currentTag(){return this.$store.state.currentTag}}
-  })
+  @Component({components: {Dbutton, FormItem, Icon},})
   export default class EditLabel extends Vue {
+    updateTag(name: string){
+      //console.log(name);
+      if(this.currentTag){
+        this.$store.commit('updateTag',{id:this.currentTag.id,name});
+      }
+    }
     // tag?: {id: string;name: string} = undefined;
   get currentTag(){
     return this.$store.state.currentTag;
@@ -39,21 +38,17 @@
 
       this.$store.commit('setCurrentTag',id);
         if(!this.currentTag){
-          this.$router.replace('/404');//默认的404页面
+          this.$router.replace('/404');//即not found页面
         }
     }
-//TODO
-    updateTag(a: string){
-      // if(this.tag){
-      //   this.$store.commit('updateTag',a);
-      // }
-    }
-//TODO
+
+
+
     deleteTag(id: string){
-      // if(this.tag){
-      //   this.$store.commit('deleteTag',this.tag.id);
-      //   this.$router.back();
-      // }
+      if(this.currentTag){
+        this.$store.commit('removeTag',this.currentTag.id);
+        //this.$router.back();
+      }
     }
 
     goBack(){

@@ -22,7 +22,7 @@
     // inputValue(event:KeyboardEvent){
     //   this.value = (event.target as HTMLInputElement).value;
     // }
-    @Watch("value1")
+    // @Watch("value1")
     onValueChanged(value: string){
       this.$emit("update:value1",value);
     }
