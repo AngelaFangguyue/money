@@ -35,7 +35,7 @@
     created(){
       const id = this.$route.params.id;
       //this.currentTag = this.$store.commit('setCurrentTag',id);//commit的返回值是void，所以不能这样写，去获取tag
-
+      this.$store.commit('fetchTags');
       this.$store.commit('setCurrentTag',id);
         if(!this.currentTag){
           this.$router.replace('/404');//即not found页面
