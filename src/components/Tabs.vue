@@ -4,7 +4,8 @@
       <li v-for="item in dataSource" :key="item.value"
           class="tabs-item"
           :class="liclass(item)"
-          @click="selected(item)">
+          @click="selected(item)"
+          :style="{height:height}">
         {{item.text}}
       </li>
     </ul>
@@ -24,6 +25,8 @@
 
     @Prop(String) readonly value!: string;
 
+    @Prop({type:String,default:'64px'}) height!: string;
+
     liclass(item: dataSourceItem){
       return {selected:item.value===this.value,
       [this.classPerfix+'-tabs-item']:this.classPerfix}}
@@ -41,7 +44,7 @@
     font-size:24px;
      &-item{
       flex-grow: 0.5;
-      height: 64px;
+      /*height: 64px;*/
       display: flex;
       justify-content: center;
       align-items: center;
