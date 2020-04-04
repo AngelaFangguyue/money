@@ -8,18 +8,44 @@
   <div>
     <ol>
       <li v-for="(group,index) in result" :key="index">
-        <h3>{{group.title}}</h3>
+        <h3 class="title">{{group.title}}</h3>
       <ol>
-        <li v-for="(item,index) in group.items" :key="index">
-          {{item.amount}}《》{{item.created}}
+        <li v-for="(item,index) in group.items" :key="index" class="record">
+          <span>{{tagString(item.tags)}}</span>
+          <span class="notes">{{item.notes}}wwwwwwwwwdfgfgddfgsd世界顶级的经济的恢复当时是况且况且开发司法考试放宽受到核辐射开发罗收到付款收款加分号可是覅我一日无放开手付款时间发货</span>
+          <span>{{item.amount}}</span>
         </li>
       </ol>
-
       </li>
     </ol>
   </div>
   </Layout>
 </template>
+<style scoped lang="scss">
+  %item{
+    padding: 0 16px;
+    min-height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .title{
+    @extend %item;
+  }
+  .record{
+    background-color: white;
+    @extend %item;
+  }
+  .notes{
+    margin-right: auto;
+    margin-left: 16px;
+    color: #999;
+    /*white-space: nowrap;*/
+    /*overflow: hidden;*/
+    /*text-overflow:ellipsis;*/
+  }
+
+</style>
 <script lang="ts">
 import Vue from 'vue';
 import Types from '@/components/Money/Types.vue';
@@ -31,6 +57,10 @@ import intervalList from '@/constants/intervalList';
   components: {Tabs, Types},
 })
 export default class Statistics extends Vue{
+
+  tagString(tags: Tag[]){
+    return tags.length===0?'无':tags.join('，');
+  }
 
   get recordList(){
     return (this.$store.state as myStore).recordList;
@@ -74,7 +104,5 @@ export default class Statistics extends Vue{
     .interval-tabs-item{
       /*height: 48px;*/
     }
-
   }
-
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+
     <ul class="tabs" :class="{[classPerfix+'-tabs']:classPerfix}">
       <li v-for="item in dataSource" :key="item.value"
           class="tabs-item"
@@ -9,7 +9,7 @@
         {{item.text}}
       </li>
     </ul>
-  </div>
+
 </template>
 
 <script lang="ts">
@@ -38,12 +38,17 @@
 </script>
 
 <style lang="scss" scoped>
+  div.tabs-wrapper{
+    width: 100%;
+  }
   .tabs{
     background: #c4c4c4;
     display:flex;
     font-size:24px;
+
      &-item{
       flex-grow: 0.5;
+      /* width:50%;*/
       /*height: 64px;*/
       display: flex;
       justify-content: center;
