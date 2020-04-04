@@ -8,7 +8,7 @@
   <div>
     <ol>
       <li v-for="(group,index) in result" :key="index">
-        <h3 class="title">{{group.title}}</h3>
+        <h3 class="title">{{beautify(group.title)}}</h3>
       <ol>
         <li v-for="(item,index) in group.items" :key="index" class="record">
           <span>{{tagString(item.tags)}}</span>
@@ -53,10 +53,29 @@ import {Component} from 'vue-property-decorator';
 import Tabs from '@/components/Tabs.vue';
 import typeList from '@/constants/typeList';
 import intervalList from '@/constants/intervalList';
+import dayjs, {isDayjs} from 'dayjs';
+
 @Component({
   components: {Tabs, Types},
 })
 export default class Statistics extends Vue{
+
+  beautify(date: string){
+    const date1 = dayjs(date);
+    const nowd = dayjs();
+   // console.log("dayjs(date):",dayjs(date));
+    if(date1.isSame(nowd,'day')){
+      return '今天';
+    }else if(date1.isSame(nowd.subtract(1,'day'),'day')){
+      return '昨天';
+    }else if(date1.isSame(nowd.subtract(2,'day'),'day')){
+      return '前天';
+    }else if(date1.isSame(nowd,'year')){
+      return date1.format('MM月D日')
+    }else{
+      return date1.format('YYYY年MM月D日')
+    }
+  }
 
   tagString(tags: Tag[]){
     return tags.length===0?'无':tags.join('，');
