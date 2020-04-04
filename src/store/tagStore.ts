@@ -1,5 +1,5 @@
 //import tagListModel from '@/model/tagListModel';
-import Tags from '@/views/Money/Tags.vue';
+import Tags from '@/components/Money/Tags.vue';
 import clone from '@/lib/clone';
 import createId from '@/lib/createId';
 

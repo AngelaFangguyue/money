@@ -1,8 +1,12 @@
 <template>
   <div >
     <ul class="types">
-      <li :class="value==='-'&& 'selected'" @click="selectType('-')">支出</li>
-      <li :class="value==='+'&& 'selected'" @click="selectType('+')">收入</li>
+      <li :class="{selected:value==='-',
+      [classPerfix+'-item']:classPerfix}"
+          @click="selectType('-')">支出</li>
+      <li :class="{selected:value==='+',
+      [classPerfix+'-item']:classPerfix}"
+          @click="selectType('+')">收入</li>
     </ul>
   </div>
 </template>
@@ -52,6 +56,8 @@
     @Prop(String) as: string|undefined;
 
     @Prop(String) value!: string;
+
+    @Prop(String) classPerfix?: string;
   }
 </script>
 
@@ -68,7 +74,7 @@
       align-items: center;
       position: relative;
       &.selected{
-        &:after{
+        &::after{
           content:"";
           display: block;
           position: absolute;

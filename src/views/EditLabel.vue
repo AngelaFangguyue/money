@@ -17,7 +17,7 @@
   import Vue from 'vue';
   import {Component} from 'vue-property-decorator';
   import Icon from '@/components/Icon.vue';
-  import FormItem from '@/views/Money/FormItem.vue';
+  import FormItem from '@/components/Money/FormItem.vue';
   import Dbutton from '@/views/Dbutton.vue';
   @Component({components: {Dbutton, FormItem, Icon},})
   export default class EditLabel extends Vue {

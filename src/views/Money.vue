@@ -5,7 +5,9 @@
 <!--   <Numberpad :value="record.amount" @update:value="onUpdateAmount"/>-->
    <Numberpad :value.sync="record.amount" @update:record="saveRecord"/>
 <!--   <Types as="asasas"  :value="record.type" @update:value="onUpdateType"/>-->
-   <Types as="asasas"  :value.sync="record.type"/>
+<!--   <Types as="asasas"  :value.sync="record.type"/>-->
+
+   <Tabs :data-source="typeList"  :value.sync="record.type"></Tabs>
 <!--   <Notes :value="record.notes" @update:value="onUpdateNotes"/>-->
    <div class="notes">
    <FormItem @update:value1="onUpdateNotes" field-name="备注" place-holder="请输入备注"/>
@@ -23,11 +25,13 @@
 
 <script lang="ts">
   import Vue from 'vue';
-  import FormItem from '@/views/Money/FormItem.vue';
-  import Numberpad from '@/views/Money/Numberpad.vue';
-  import Types from '@/views/Money/Types.vue';
-  import Tags from '@/views/Money/Tags.vue';
+  import FormItem from '@/components/Money/FormItem.vue';
+  import Numberpad from '@/components/Money/Numberpad.vue';
+  // import Types from '@/components/Money/Types.vue';
+  import Tags from '@/components/Money/Tags.vue';
   import {Component, Watch} from 'vue-property-decorator';
+  import typeList from '@/constants/typeList';
+  import Tabs from '@/components/Tabs.vue';
  // import recordListModel from '@/model/recordListModel';
   //const model = require('@/model.js').default;
 //import store2 from '@/store/index2';
@@ -40,7 +44,7 @@
 
 
    @Component({
-     components:{FormItem,Numberpad,Types,Tags},
+     components:{Tabs, FormItem,Numberpad,Tags},
      // computed:{
      //   // countd(){return store.count},//测试值和地址的差别，不管是值还是地址都放在computed里，把store作为data放在App.vue中
      //   recordList(){return this.$store.state.recordList},
@@ -51,6 +55,8 @@
      // }
    })
   export default class Money extends Vue{
+
+     typeList = typeList;
 
      get recordList(){return this.$store.state.recordList}
 
