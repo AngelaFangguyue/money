@@ -8,11 +8,13 @@
 <script lang="ts">
   const importAll =(requireContext: __WebpackModuleApi.RequireContext)=>requireContext.keys().forEach(requireContext);
   try{importAll(require.context('../assets/icons',true,/\.svg$/));}
-  catch(error){console.log(error);}
+  catch(error){console.log("error:",error);}
   export default {
     name: 'Icon',
     props:['iconName']
   };
+  console.log('hihihi');
+  // import x from '@/assets/icons/label.svg';
 </script>
 
 <style lang="scss" scoped>

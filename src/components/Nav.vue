@@ -23,7 +23,7 @@
   // import y from '../assets/icons/money.svg';
   // console.log("y:",y);
   // import z from '../assets/icons/tongji.svg';
-  // console.log("z:",z);
+   console.log("Icon:",Icon);
 
 
   export default {

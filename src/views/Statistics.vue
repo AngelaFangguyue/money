@@ -92,14 +92,16 @@ export default class Statistics extends Vue{
     const newRecordList = clone(recordList);
     newRecordList.sort((a,b)=>dayjs(b.created).valueOf()-dayjs(a.created).valueOf());
     //console.log("newRecordList:",newRecordList);
-    const hashTable: {[key: string]: {title: string;items: RecordItem[]}} = {};
-    for(let i=0;i<recordList.length;i++){
-      const [date,time] = recordList[i].created!.split("T");
-      hashTable[date] = hashTable[date] || {title:date,items:[]};
-      hashTable[date].items.push(recordList[i]);
-    }
-    console.log("hashTable:",hashTable);
-    console.log("this.recordList:",this.recordList);
+    /////////////////////////
+    // const hashTable: {[key: string]: {title: string;items: RecordItem[]}} = {};
+    // for(let i=0;i<recordList.length;i++){
+    //   const [date,time] = recordList[i].created!.split("T");
+    //   hashTable[date] = hashTable[date] || {title:date,items:[]};
+    //   hashTable[date].items.push(recordList[i]);
+    // }
+    ////////////////////////
+    //console.log("hashTable:",hashTable);
+   // console.log("this.recordList:",this.recordList);
     //return this.recordList;
     const resultTable = [{title:newRecordList[0].created,items:[newRecordList[0]]}];
     for(let i=1;i<newRecordList.length;i++){
@@ -115,7 +117,8 @@ export default class Statistics extends Vue{
 
 
 
-    return hashTable;
+   // return hashTable;
+    return resultTable;
   }
 
   created(){
