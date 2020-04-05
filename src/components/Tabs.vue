@@ -32,6 +32,7 @@
       [this.classPerfix+'-tabs-item']:this.classPerfix}}
 
     selected(item: dataSourceItem){
+      console.log("item:",item);
       this.$emit("update:value",item.value);
     }
   }

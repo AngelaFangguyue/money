@@ -5,7 +5,8 @@
     </div>
     <ul class="current">
 <!--      <li v-for="i in dataSource" :key="i.id"  :class="{selected:selectedTags.indexOf(i.id)>=0}" @click="toggle(i.id)">{{i.name}}</li>-->
-      <li v-for="i in tagList" :key="i.id"  :class="{selected:selectedTags.indexOf(i.id)>=0}" @click="toggle(i.id)">{{i.name}}</li>
+      <li v-for="i in tagList" :key="i.id"  :class="{selected:value.indexOf(i)>=0}" @click="toggle(i)"
+     >{{i.name}}</li>
     </ul>
   </div>
 </template>
@@ -17,20 +18,28 @@
   import {TagHelper} from '@/mixins/TagHelper';
   //import store from '@/store/index2';
 
-  @Component({computed:{tagList(){return this.$store.state.tagList;}}})
+  // @Component({computed:{tagList(){return this.$store.state.tagList;}}})
+  @Component
   export default class Tags extends mixins(TagHelper){
-    @Prop(Array) value!: string[];
+    @Prop(Array) value!: Tag[];
     // @Prop({required:true}) dataSource!: string[]  ;
     created(){
       this.$store.commit('fetchTags');
     }
-    selectedTags: string[] = [];
+
+
+    get tagList(){
+
+      return this.$store.state.tagList;
+    }
+
+    ////*selectedTags: Tag[] = [];
     // create(){
     //   const name = window.prompt("请输入标签名");
     //   if (!name){return window.alert("标签名不能为空");}
     //     this.$store.commit('createTag',name);
     // }
-    toggle(a: string){
+    toggle(a: Tag){
       //////////////
       // if(event){
       //   console.log(event);
@@ -41,15 +50,22 @@
       //}
       ///////////////
 //////////////
-      const index = this.selectedTags.indexOf(a);
+      ////*const index = this.selectedTags.indexOf(a);
+      const index = this.value.indexOf(a);
       if(index>=0){
-        this.selectedTags.splice(index,1);
+        ////*this.selectedTags.splice(index,1);
+        this.value.splice(index,1);
         //console.log("dianji2:",this.selectedTags);
       }else{
-        this.selectedTags.push(a);
+        ////*this.selectedTags.push(a);
+        this.value.push(a);
        // console.log("dianji1:",this.selectedTags);
       }
-      this.$emit("update:value",this.selectedTags);
+      ////*console.log("this.selectedTags:",this.selectedTags);
+      console.log("this.selectedTags:",this.value);
+      ////*this.$emit("update:value",this.selectedTags);
+      this.$emit("update:value",this.value);
+
     }
   }
 </script>

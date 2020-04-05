@@ -10,10 +10,10 @@
    <Tabs :data-source="typeList"  :value.sync="record.type"></Tabs>
 <!--   <Notes :value="record.notes" @update:value="onUpdateNotes"/>-->
    <div class="notes">
-   <FormItem @update:value1="onUpdateNotes" field-name="备注" place-holder="请输入备注"/>
+   <FormItem :value1.sync="record.notes" field-name="备注" place-holder="请输入备注"/>
    </div>
 <!--   <Tags :data-source.sync="tags" :value.sync="record.tags" />-->
-   <Tags/>
+   <Tags :value="record.tags" @update:value="record.tags=$event"/>
 <!--   <button @click="add">+++</button>-->
 <!--   {{countd}}-&#45;&#45;+++-&#45;&#45;{{count2}}-->
 <!--      <button @click="$store.commit('increment')">+++</button>-->
@@ -103,7 +103,15 @@
   //  store2.createRecord(this.record);
   // }
      saveRecord(){
+       if(!this.record.tags|| this.record.tags.length===0){
+          return window.alert('请至少选择一个标签');
+       }
        this.$store.commit("createRecord",this.record);
+       if(this.$store.state.createRecordError===null){
+         window.alert("已保存")
+         this.record.notes = '';
+         this.record.tags = [];
+       }
      }
 
   // @Watch("recordList")

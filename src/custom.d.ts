@@ -1,15 +1,16 @@
+type Tag = {
+  id: string;
+  name: string;
+}
+
 type RecordItem = {
-  tags: string[];
+  tags: Tag[];
   notes: string;
   type: string;
   amount: number;
   created?: string;
 }
 
-type Tag = {
-  id: string;
-  name: string;
-}
 
 type TagListModel = {
   data: Tag[];
@@ -24,6 +25,8 @@ type myStore = {
   recordList:  RecordItem[];
   tagList: Tag[];
   currentTag?: Tag;
+  createRecordError: Error|null;
+  createTagError: Error|null;
 }
 
 interface Window {

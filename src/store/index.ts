@@ -11,6 +11,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     recordList:[] ,
+    createRecordError:null,
+    createTagError:null,
     tagList:[],
     currentTag:undefined,
   } as myStore,
@@ -23,6 +25,7 @@ const store = new Vuex.Store({
       window.localStorage.setItem('recordList',JSON.stringify(state.recordList));
     },
     createRecord(state,record: RecordItem){
+      console.log("index.ts:record:",record);
       const record2: RecordItem = clone(record);
       record2.created = new Date().toISOString();
         if(state.recordList){
@@ -33,6 +36,13 @@ const store = new Vuex.Store({
     //////////////////
     fetchTags(state){
       state.tagList =  JSON.parse(window.localStorage.getItem('tagList')||'[]') as Tag[];
+      if(state.tagList.length===0){
+        store.commit('createTag','衣');
+        store.commit('createTag','食');
+        store.commit('createTag','住');
+        store.commit('createTag','行');
+
+      }
     },
     setCurrentTag(state,id: string){
       state.currentTag = state.tagList.filter(item=>item.id===id)[0];
@@ -41,6 +51,7 @@ const store = new Vuex.Store({
       window.localStorage.setItem('tagList',JSON.stringify(state.tagList));
     },
     createTag(state,name){
+      state.createTagError = null;
       const names = state.tagList.map(item=>item.name);
       //console.log("index.ts:names:",names);
       //console.log("index.ts:name:",name);
@@ -50,10 +61,12 @@ const store = new Vuex.Store({
         state.tagList.push({id:id,name:name});
         store.commit('saveTags')//默认可以不用传state这个参数
         //state.saveTags();
-        window.alert("创建成功")
+        //window.alert("创建成功")
         //return "success";
       }else{
-        window.alert("标签已存在")
+        state.createTagError = new Error('tag name duplicated');
+        return;
+        //window.alert("标签已存在")
         //return 'duplicated';
       }
     },
