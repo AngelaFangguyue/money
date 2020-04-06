@@ -3,6 +3,10 @@ const path = require("path");//这是node.js的一个模块，可以用来做pat
 
 module.exports = {
   lintOnSave: false,
+
+  publicPath: process.env.NODE_ENV === 'production'
+    ? '/money-view/'
+    : '/',
   // //添加一个chainWebpack，是个函数，接收一个config，
   // chainWebpack:config=>{
   //   const dir = path.resolve(__dirname,'src/assets/icons')//确定icon所在的目录;__dirname就是当前目录，在这里就是根目录
