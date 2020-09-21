@@ -12,7 +12,7 @@
 <!--    </div>-->
 <!--    <router-view/>-->
 <!--  </div>-->
-<div><!--  app-->
+<div id="app"><!--  app-->
 <!--  <hr>-->
     <router-view/>
 

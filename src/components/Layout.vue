@@ -19,13 +19,13 @@
 
 <style lang="scss" scoped>
   .layout-wrapper{
-    border:1px solid blue;
+    /*border:1px solid blue;*/
     display: flex;
     flex-direction: column;
     min-height: 100vh;
   }
   .content{
-    border:1px solid darkgreen;
+    /*border:1px solid darkgreen;*/
     overflow: auto;
     flex-grow:1;
   }

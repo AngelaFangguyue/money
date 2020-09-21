@@ -1,7 +1,7 @@
 <template>
 
  <Layout class-perfix="money" >
-   {{recordList}}
+
 <!--   <Numberpad :value="record.amount" @update:value="onUpdateAmount"/>-->
    <Numberpad :value.sync="record.amount" @update:record="saveRecord"/>
 <!--   <Types as="asasas"  :value="record.type" @update:value="onUpdateType"/>-->
